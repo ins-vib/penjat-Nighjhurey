@@ -14,7 +14,12 @@ import java.util.Scanner;
 public class JuegoDelAhorcado {
 
     public static void main(String[] args) {
-        String palabras = Obtenerpalabras();
+
+        jugar();
+
+    } 
+    public static void jugar() {
+    String palabras = Obtenerpalabras();
         char[] estado = inicializar(palabras);
         int errores = 0;
 
@@ -37,9 +42,13 @@ public class JuegoDelAhorcado {
             System.out.println();
             mostrarDibujo(errores);
 
-            
+            if (palabraCompleta(estado)) {
+                System.out.println("¡Enhorabuena! Has acertado la plabra");
+            }else {
+                System.out.println("Has perdido, la palabrab era: " + palabras);
+            }
         }
-    } 
+        }
     /**
      * Metodo que da la palabra aleatoriamente
      * @return la palabra random del array {@code palabra[posicion]}
@@ -113,6 +122,8 @@ public class JuegoDelAhorcado {
 
     public static void mostrarDibujo(int error) {
         String[] dibujos = dibujo();
+        if (error < 0) error = 0;
+        if (error > dibujos.length - 1) error = dibujos.length - 1;
         System.out.println(dibujos[error]);
     }
     /**
@@ -124,7 +135,7 @@ public class JuegoDelAhorcado {
         char letra = 0;
         boolean fin = false;
         while(!fin) {
-            System.out.println("introduce una letra (a-a): ");
+            System.out.println("introduce una letra (a-z): ");
             String entrada = sc.nextLine().toLowerCase();
 
            if(entrada.length()== 1) {
@@ -162,18 +173,16 @@ public static char[] inicializar(String palabra) {
  * @return true 
  */
 public static boolean actualizarEstado(char[] estado, String palabra, char letra) {
-        boolean probar = false;
-        int i = 0;
+        boolean encontrada = false;
 
-        while (i < palabra.length() && !probar) {
+        for(int i = 0; i < palabra.length(); i++) {
             if (palabra.charAt(i) == letra) {
                 estado[i] = letra;
-                probar = true;
+                encontrada = true;
             }
-            i++;
         }
 
-        return probar;
+        return encontrada;
     }
     /**
      * Metodo que muestra el estado recorriendo el array de caracteres
@@ -191,17 +200,11 @@ public static boolean actualizarEstado(char[] estado, String palabra, char letra
      * @return un false si no esta completada y un true si lo esta {@code completada}
      */
     public static boolean palabraCompleta(char[] estado) {
-        int i = 0;
-        boolean completada = true;
-    
-        while(i < estado.length && !completada) {
-            if (estado[i] == '_') {
-                completada = false;
-                i = estado.length;
-            }else {
-                i++;
-            }
+       for (int i = 0; i < estado.length; i++) {
+        if(estado[i] == '_') {
+            return false;
         }
-        return completada;
+       }
+       return true;
     }
 }
