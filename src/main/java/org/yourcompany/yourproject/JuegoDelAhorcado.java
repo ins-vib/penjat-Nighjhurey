@@ -34,6 +34,7 @@ public class JuegoDelAhorcado {
 
                 if(errores == 6) {
                     mostrarDibujo(errores);
+                    System.out.println("La palabra era: " + palabras);
                 }
             } else {
                 System.out.println("Has acertado");
@@ -43,7 +44,7 @@ public class JuegoDelAhorcado {
            
 
         }
-
+       
     }
 
 

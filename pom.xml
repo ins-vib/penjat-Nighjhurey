@@ -10,12 +10,11 @@
         <exec.mainClass>org.yourcompany.yourproject.JuegoDelAhorcado</exec.mainClass>
     </properties>
     <dependencies>
-          <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter-engine</artifactId>
-    <version>5.14.1</version>
-    <scope>test</scope>
+    <dependency>
+<groupId>org.junit.jupiter</groupId>
+<artifactId>junit-jupiter-engine</artifactId>
+<version>5.10.0</version>
+<scope>test</scope>
 </dependency>
     
     </dependencies>
